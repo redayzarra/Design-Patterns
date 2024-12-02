@@ -52,7 +52,7 @@ class AttractionFactory {
 }
 
 // Test the factory
-public class Main {
+public class Factory {
 	public static void main(String[] args) {
 		// Create attractions using the factory
 		Attraction rollercoaster = AttractionFactory.createAttraction("rollercoaster");
