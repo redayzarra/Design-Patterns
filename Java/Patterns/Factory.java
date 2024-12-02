@@ -8,7 +8,7 @@ interface Attraction {
 
 // Define a concrete class for roller coaster attraction
 class RollerCoaster implements Attraction {
-	@Override
+	@Override // Rewrite the functionality of the method from super class
 	public Map<String, String> getRequirements() {
 		Map<String, String> requirements = new HashMap<>();
 		requirements.put("height", "Must be at least 48 inches tall");
@@ -18,7 +18,7 @@ class RollerCoaster implements Attraction {
 }
 
 class HauntedHouse implements Attraction {
-    @Override
+	@Override
     public Map<String, String> getRequirements() {
         Map<String, String> requirements = new HashMap<>();
         requirements.put("age", "Must be at least 12 years old");
