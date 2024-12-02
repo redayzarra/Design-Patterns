@@ -38,7 +38,7 @@ class WaterSlide implements Attraction {
 }
 
 // Create the Factory Pattern: Uses a string type to return the correct class
-class AttractionFactory {
+public class Factory {
 	public static Attraction createAttraction(String type) {
 		switch (type.toLowerCase()) {
 			case "rollercoaster":
@@ -51,22 +51,19 @@ class AttractionFactory {
 				throw new IllegalArgumentException("Unknown type of attraction: " + type);
 		}
 	}
-}
 
-// Test the design pattern
-public class Factory {
-	public static void main(String[] args) {
-		// Create attractions using the factory
-		Attraction rollercoaster = AttractionFactory.createAttraction("rollercoaster");
-		Attraction hauntedhouse = AttractionFactory.createAttraction("hauntedhouse");
-		Attraction waterslide = AttractionFactory.createAttraction("waterslide");
-
-		// Store the attractions in an array
-		Attraction[] attractions = {rollercoaster, hauntedhouse, waterslide};
-
-		// Test each attraction
-		for (Attraction attraction : attractions) {
-			System.out.println(attraction.getRequirements());
-		}
-	}
+    public static void main(String[] args) {
+        // Create attractions using the factory
+        Attraction rollercoaster = Factory.createAttraction("rollercoaster");
+        Attraction hauntedhouse = Factory.createAttraction("hauntedhouse");
+        Attraction waterslide = Factory.createAttraction("waterslide");
+    
+        // Store the attractions in an array
+        Attraction[] attractions = {rollercoaster, hauntedhouse, waterslide};
+    
+        // Test each attraction
+        for (Attraction attraction : attractions) {
+            System.out.println(attraction.getRequirements());
+        }
+    }
 }
