@@ -1,10 +1,12 @@
 import java.util.HashMap;
 import java.util.Map;
 
+// Define an interface to specify other attractions
 interface Attraction {
 	Map<String, String> getRequirements();
 }
 
+// Define a concrete class for roller coaster attraction
 class RollerCoaster implements Attraction {
 	@Override
 	public Map<String, String> getRequirements() {
@@ -35,7 +37,7 @@ class WaterSlide implements Attraction {
     }
 }
 
-// Create the Factory Pattern for attractions
+// Create the Factory Pattern: Uses a string type to return the correct class
 class AttractionFactory {
 	public static Attraction createAttraction(String type) {
 		switch (type.toLowerCase()) {
@@ -51,7 +53,7 @@ class AttractionFactory {
 	}
 }
 
-// Test the factory
+// Test the design pattern
 public class Factory {
 	public static void main(String[] args) {
 		// Create attractions using the factory
