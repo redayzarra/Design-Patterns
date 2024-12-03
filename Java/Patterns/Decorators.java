@@ -1,3 +1,4 @@
+// Create the tool interface to define all other tools
 interface Tool {
     double damage();
     double durability();
@@ -5,6 +6,7 @@ interface Tool {
     String description();
 }
 
+// Create concrete classes that are tools 
 class Sword implements Tool {
     private static final double DAMAGE = 50.0;
     private static final double DURABILITY = 25.0;
@@ -83,6 +85,7 @@ class Hammer implements Tool {
     }
 }
 
+// Create an abstract class that accepts and is a tool
 abstract class ToolDecorator implements Tool {
     protected Tool tool;
 
@@ -111,6 +114,7 @@ abstract class ToolDecorator implements Tool {
     }
 }
 
+// Create decorators to change the underlying behavior of tools
 class SharpnessDecorator extends ToolDecorator {
     private final double sharpnessValue;
 
@@ -168,6 +172,7 @@ class SpeedBoostDecorator extends ToolDecorator {
     }
 }
 
+// Test the design patterns
 public class Decorators {
     public static void main(String[] args) {
         // Create a basic sword
