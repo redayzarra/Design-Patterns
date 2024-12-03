@@ -25,7 +25,7 @@ class Meal {
     private Drink drink;
     private Dessert dessert;
 
-    // Constructor
+    // Constructor to initialize a list of sides
     public Meal() {
         this.sides = new ArrayList<>();
     }
@@ -104,6 +104,7 @@ class MealBuilder {
         return this;
     }
 
+    // Return the final meal using the build() method
     public Meal build() {
         return meal;
     }
