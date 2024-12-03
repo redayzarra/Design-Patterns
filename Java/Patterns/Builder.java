@@ -70,12 +70,15 @@ class Meal {
 
 // Create the Builder pattern: Define a concrete class to build meals
 class MealBuilder {
+    // Create the meal that we will build and return
     private Meal meal;
 
+    // Constructor to initilize a Meal object
     public MealBuilder() {
         this.meal = new Meal();
     }
 
+    // Returning "this" to allow for method chaining
     public MealBuilder setMainItem(MainItem mainItem) {
         meal.setMainItem(mainItem);
         return this;
@@ -106,7 +109,7 @@ class MealBuilder {
     }
 }
 
-// Step 5: Test the system
+// Test the design pattern
 public class Builder {
     public static void main(String[] args) {
         // Use the builder to create a custom meal
