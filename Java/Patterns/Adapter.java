@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.List;
 
+// Create an interface for every audio device
 interface AudioDevice {
     void playMusic();
     void stopMusic();
 }
 
+// Define a concrete class with unique methods
 class Speaker {
     public void startPlayback() {
         System.out.println("Speaker has started playing music.");
@@ -26,6 +28,7 @@ class Headphones {
     }
 }
 
+// Create an adapter for Speakers which allows them to be compatible
 class SpeakerAdapter implements AudioDevice {
     private final Speaker speaker;
 
@@ -44,6 +47,7 @@ class SpeakerAdapter implements AudioDevice {
     }
 }
 
+// Create an adapter for headphones that make them compatible
 class HeadphonesAdapter implements AudioDevice {
     private final Headphones headphones;
 
