@@ -33,19 +33,23 @@ class BookShipping implements PricingStrategy {
 
 // Create a calculator class that will use calculator
 class ShippingCalculator {
+    // Create a variable for the strategy and it's parameters
     private PricingStrategy strategy;
     private double weight;
     private int quantity;
 
+    // Constructor for initializing calculator and defining variables
     public ShippingCalculator(double weight, int quantity) {
         this.weight = weight;
         this.quantity = quantity;
     }
 
+    // Method to change the current strategy
     public void setStrategy(PricingStrategy strategy) {
         this.strategy = strategy;
     }
 
+    // Method to calculate the cost using current strategy
     public double calculateCost() {
         if (strategy == null) {
             throw new IllegalStateException("PricingStrategy not set. Use setStrategy() to define a strategy.");
@@ -53,10 +57,12 @@ class ShippingCalculator {
         return strategy.calculateCost(weight, quantity);
     }
 
+    // Method to change the current weight (paramter in strategy)
     public void setWeight(double weight) {
         this.weight = weight;
     }
 
+    // Method to change the current quantity (paramter in strategy)
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
