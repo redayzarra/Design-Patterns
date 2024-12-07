@@ -1,35 +1,41 @@
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+// Create the observer interface that will get the notifications
 interface ObserverObject {
     void announce(String message);
 }
 
+// Create the subject interface that will send the notifications
 interface Subject {
     void addObserver(ObserverObject observer);
     void removeObserver(ObserverObject observer);
     void notifyObservers(String message);
 }
 
+// Create the notification system that is a subject
 class NotificationSystem implements Subject {
-    private Set<ObserverObject> observers = new HashSet<>();
+    // Store the observers in a set for O(1) add, search, and remove
+    private final Set<ObserverObject> observers = new HashSet<>();
 
+    // Methods to add an observer to notify
     @Override
     public void addObserver(ObserverObject observer) {
         observers.add(observer);
     }
 
     public void addObservers(ObserverObject... observersList) {
-        for (ObserverObject observer : observersList) {
-            observers.add(observer);
-        }
+        observers.addAll(Arrays.asList(observersList));
     }
 
+    // Method to remove observer 
     @Override
     public void removeObserver(ObserverObject observer) {
         observers.remove(observer);
     }
 
+    // Method to notify all observers using a message
     @Override
     public void notifyObservers(String message) {
         for (ObserverObject observer : observers) {
@@ -38,6 +44,7 @@ class NotificationSystem implements Subject {
     }
 }
 
+// Create concrete classes that are observers
 class EmailObserver implements ObserverObject {
     @Override
     public void announce(String message) {
