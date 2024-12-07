@@ -175,8 +175,9 @@ class SpeedBoostDecorator extends ToolDecorator {
 // Test the design patterns
 public class Decorators {
     public static void main(String[] args) {
-        // Create a basic sword
+        // Create basic sword
         Tool basicSword = new Sword();
+
         System.out.println("Basic Sword:");
         System.out.println("Description: " + basicSword.description());
         System.out.println("Damage: " + basicSword.damage());

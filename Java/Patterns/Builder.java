@@ -71,7 +71,7 @@ class Meal {
 // Create the Builder pattern: Define a concrete class to build meals
 class MealBuilder {
     // Create the meal that we will build and return
-    private Meal meal;
+    private final Meal meal;
 
     // Constructor to initilize a Meal object
     public MealBuilder() {
