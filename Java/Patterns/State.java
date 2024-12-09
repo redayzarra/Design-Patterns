@@ -1,7 +1,9 @@
+// Define the state interface to create different concrete state classes
 interface TrafficState {
     void switchState(TrafficLight trafficLight);
 }
 
+// Create concrete state classes for traffic light colors
 class GreenLight implements TrafficState {
     @Override
     public void switchState(TrafficLight trafficLight) {
@@ -26,7 +28,9 @@ class RedLight implements TrafficState {
     }
 }
 
+// Create a concrete context class to manage the states
 class TrafficLight {
+    // Store the state in a variable
     private TrafficState state;
 
     // Initialize the traffic light with the Red Light state
