@@ -39,16 +39,18 @@ class WaterSlide implements Attraction {
 
 // Create the Factory Pattern: Uses a string type to return the correct class
 public class Factory {
-	public static Attraction createAttraction(String type) {
+	private static Attraction createAttraction(String type) {
 		switch (type.toLowerCase()) {
-			case "rollercoaster":
-				return new RollerCoaster();
-			case "hauntedhouse":
-				return new HauntedHouse();
-			case "waterslide":
-				return new WaterSlide();
-			default:
-				throw new IllegalArgumentException("Unknown type of attraction: " + type);
+			case "rollercoaster" -> {
+                            return new RollerCoaster();
+                }
+			case "hauntedhouse" -> {
+                            return new HauntedHouse();
+                }
+			case "waterslide" -> {
+                            return new WaterSlide();
+                }
+			default -> throw new IllegalArgumentException("Unknown type of attraction: " + type);
 		}
 	}
 
