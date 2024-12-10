@@ -8,7 +8,7 @@ interface Attraction {
 
 // Define a concrete class for roller coaster attraction
 class RollerCoaster implements Attraction {
-	@Override // Rewrite the functionality of the method from super class
+	@Override // Rewrite th functionality of the method from super class
 	public Map<String, String> getRequirements() {
 		Map<String, String> requirements = new HashMap<>();
 		requirements.put("height", "Must be at least 48 inches tall");
@@ -42,13 +42,13 @@ public class Factory {
 	private static Attraction createAttraction(String type) {
 		switch (type.toLowerCase()) {
 			case "rollercoaster" -> {
-                            return new RollerCoaster();
+                    return new RollerCoaster();
                 }
 			case "hauntedhouse" -> {
-                            return new HauntedHouse();
+                    return new HauntedHouse();
                 }
 			case "waterslide" -> {
-                            return new WaterSlide();
+                    return new WaterSlide();
                 }
 			default -> throw new IllegalArgumentException("Unknown type of attraction: " + type);
 		}

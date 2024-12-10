@@ -1,4 +1,4 @@
-// Create the tool interface to define all other tools
+// Define the Tool interface
 interface Tool {
     double damage();
     double durability();
@@ -175,31 +175,36 @@ class SpeedBoostDecorator extends ToolDecorator {
 // Test the design patterns
 public class Decorators {
     public static void main(String[] args) {
-        // Create basic sword
+        // Test Sword
         Tool basicSword = new Sword();
-
-        System.out.println("Basic Sword:");
-        System.out.println("Description: " + basicSword.description());
-        System.out.println("Damage: " + basicSword.damage());
-        System.out.println("Durability: " + basicSword.durability());
-        System.out.println("Speed: " + basicSword.speed());
-
-        // Add Sharpness and Durability to the sword
-        Tool enchantedSword = new DurabilityDecorator(
-                new SharpnessDecorator(basicSword, 7.0), 12.0
-        );
-        System.out.println("\nEnchanted Sword:");
-        System.out.println("Description: " + enchantedSword.description());
-        System.out.println("Damage: " + enchantedSword.damage());
-        System.out.println("Durability: " + enchantedSword.durability());
-        System.out.println("Speed: " + enchantedSword.speed());
-
-        // Add Speed Boost to the enchanted sword
+        Tool enchantedSword = new DurabilityDecorator(new SharpnessDecorator(basicSword, 7.0), 12.0);
         Tool fullyEnchantedSword = new SpeedBoostDecorator(enchantedSword, 15.0);
-        System.out.println("\nFully Enchanted Sword:");
+
+        System.out.println("Fully Enchanted Sword:");
         System.out.println("Description: " + fullyEnchantedSword.description());
         System.out.println("Damage: " + fullyEnchantedSword.damage());
         System.out.println("Durability: " + fullyEnchantedSword.durability());
         System.out.println("Speed: " + fullyEnchantedSword.speed());
+
+        // Test Bow
+        Tool basicBow = new Bow();
+        Tool enchantedBow = new SharpnessDecorator(basicBow, 5.0);
+        Tool durableEnchantedBow = new DurabilityDecorator(enchantedBow, 10.0);
+
+        System.out.println("\nDurable Enchanted Bow:");
+        System.out.println("Description: " + durableEnchantedBow.description());
+        System.out.println("Damage: " + durableEnchantedBow.damage());
+        System.out.println("Durability: " + durableEnchantedBow.durability());
+        System.out.println("Speed: " + durableEnchantedBow.speed());
+
+        // Test Hammer
+        Tool basicHammer = new Hammer();
+        Tool speedyHammer = new SpeedBoostDecorator(basicHammer, 20.0);
+
+        System.out.println("\nSpeedy Hammer:");
+        System.out.println("Description: " + speedyHammer.description());
+        System.out.println("Damage: " + speedyHammer.damage());
+        System.out.println("Durability: " + speedyHammer.durability());
+        System.out.println("Speed: " + speedyHammer.speed());
     }
 }
