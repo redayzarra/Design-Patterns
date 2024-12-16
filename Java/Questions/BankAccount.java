@@ -1,3 +1,5 @@
+import java.util.List;
+
 public abstract class BankAccount {
     private final String accountHolder;
     private final String accountType;
@@ -85,5 +87,27 @@ class CheckingAccount extends BankAccount {
         if (getBalance() + overdraftLimit >= amount) {
             super.deposit(-amount); // Using deposit with a negative amount
         }
+    }
+}
+
+class BankSystem {
+    public static void processAccounts(List<BankAccount> accounts, double depositAmount, double withdrawAmount) {
+        for (BankAccount account : accounts) {
+            account.deposit(depositAmount);
+            account.withdraw(withdrawAmount);
+            System.out.println(account.getAccountHolder() + "'s balance is: $" + account.getBalance());
+        }
+    }
+
+    public static void main(String[] args) {
+        // Create accounts
+        SavingsAccount account1 = new SavingsAccount("Alice", 50);
+        CheckingAccount account2 = new CheckingAccount("Josh", 25);
+
+        // List of accounts
+        List<BankAccount> accounts = List.of(account1, account2);
+
+        // Process accounts
+        processAccounts(accounts, 20, 100);
     }
 }
