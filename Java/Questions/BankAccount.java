@@ -64,3 +64,26 @@ class SavingsAccount extends BankAccount {
         super.deposit(newBalance - getBalance());
     }
 }
+
+class CheckingAccount extends BankAccount {
+    private double overdraftLimit;
+
+    // Constructor
+    public CheckingAccount(String accountHolder, double balance, double overdraftLimit) {
+        super(accountHolder, "checking", balance);
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    // Default constructor with overdraft limit of $500
+    public CheckingAccount(String accountHolder, double balance) {
+        this(accountHolder, balance, 500);
+    }
+
+    // Overriding withdraw method
+    @Override
+    public void withdraw(double amount) {
+        if (getBalance() + overdraftLimit >= amount) {
+            super.deposit(-amount); // Using deposit with a negative amount
+        }
+    }
+}
