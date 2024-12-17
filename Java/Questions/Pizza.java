@@ -3,6 +3,7 @@ import java.util.Map;
 
 // Create an enum to define the different sizes of pizza
 enum Size {
+    // Define the basic pizza sizes
     SMALL("Small"),
     MEDIUM("Medium"),
     LARGE("Large");
@@ -53,5 +54,32 @@ public class Pizza {
 
     public Size getSize() {
         return size;
+    }
+}
+
+// Define interfaces for Pizzas 
+interface Bakeable {
+    void prepare();
+}
+
+interface Grillable {
+    void prepare();
+}
+
+// Create a bakeable Pizza - specifically Margerita
+class MargheritaPizza extends Pizza implements Bakeable {
+    public MargheritaPizza(Size size, List<String> toppings) {
+        super("margherita", size, toppings);
+        sizePrices = Map.of(
+            "Small", 12.0,
+            "Medium", 16.0,
+            "Large", 22.0
+        );
+        toppingPrice = 2.0;
+    }
+
+    @Override
+    public void prepare() {
+        System.out.println("Baking Margherita pizza...");
     }
 }
