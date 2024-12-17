@@ -128,4 +128,3 @@ class Order:
             print(f"- {pizza.type} ({pizza.size}): ${pizza.calculate_price():.2f}")
         print(f"Total: ${self.calculate_total():.2f}")
     
-
