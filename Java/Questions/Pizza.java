@@ -68,6 +68,7 @@ interface Grillable {
 
 // Create a bakeable Pizza - specifically Margerita
 class MargheritaPizza extends Pizza implements Bakeable {
+    // Initialize the pizza with size and list of toppings
     public MargheritaPizza(Size size, List<String> toppings) {
         super("margherita", size, toppings);
         sizePrices = Map.of(
@@ -78,8 +79,29 @@ class MargheritaPizza extends Pizza implements Bakeable {
         toppingPrice = 2.0;
     }
 
+    // Define the prepare() method since we called the Bakeable interface
     @Override
     public void prepare() {
         System.out.println("Baking Margherita pizza...");
+    }
+}
+
+// Create a grillable Pizza - specifically Pepperoni
+class PepperoniPizza extends Pizza implements Grillable {
+    // Initialize the pizza with size and list of toppings
+    public PepperoniPizza(Size size, List<String> toppings) {
+        super("pepperoni", size, toppings);
+        sizePrices = Map.of(
+            "Small", 14.0,
+            "Medium", 18.0,
+            "Large", 25.0
+        );
+        toppingPrice = 2.0;
+    }
+
+    // Define the prepare() method since we called the Grillable interface
+    @Override
+    public void prepare() {
+        System.out.println("Grilling pepperoni pizza...");
     }
 }
