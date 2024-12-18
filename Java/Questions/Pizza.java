@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -148,5 +149,50 @@ class Cash implements PaymentMethod {
     @Override
     public String getType() {
         return "cash";
+    }
+}
+
+// Create a concrete order class which calculates pizza details
+class Order {
+    // Store the list of pizzas and the payment method used
+    private final List<Pizza> items;
+    private final PaymentMethod payment;
+
+    // Constructor to initialize the pizzas and payment method
+    public Order(List<Pizza> items, PaymentMethod payment) {
+        this.items = new ArrayList<>(items);
+        this.payment = payment;
+    }
+
+    // Add a pizza to our list of items
+    public void addPizza(Pizza pizza) {
+        items.add(pizza);
+    }
+
+    // Remove a pizza from our list of items
+    public void removePizza(Pizza pizza) {
+        items.remove(pizza);
+    }
+
+    // Create a method to calculate the total amount for order
+    public double calculateTotal() {
+        double total = 0;
+        for (Pizza pizza : items) {
+            total += pizza.calculatePrice();
+        }
+        return total;
+    }
+
+    // Create a method to pretty print the items
+    public void displayOrderSummary() {
+        System.out.println("Order Summary:");
+        for (Pizza pizza : items) {
+            System.out.printf("- %s (%s): $%.2f%n", 
+                pizza.getType(), 
+                pizza.getSize(), 
+                pizza.calculatePrice()
+            );
+        }
+        System.out.printf("Total: $%.2f%n", calculateTotal());
     }
 }
