@@ -196,3 +196,22 @@ class Order {
         System.out.printf("Total: $%.2f%n", calculateTotal());
     }
 }
+
+// Test the system
+class Main {
+    public static void main(String[] args) {
+        // Create different kind of pizzas with different toppings
+        Pizza margherita = new MargheritaPizza(Size.MEDIUM, List.of("Extra Cheese", "Olives"));
+        Pizza pepperoni = new PepperoniPizza(Size.LARGE, List.of("Mushrooms"));
+
+        // Specify the payment method we will use to test the system
+        PaymentMethod payment = new CreditCard();
+
+        // Create a new order with the pizzas 
+        Order order = new Order(List.of(margherita, pepperoni), payment);
+        order.displayOrderSummary();
+
+        // Test the payment processing 
+        payment.processPayment();
+    }
+}
