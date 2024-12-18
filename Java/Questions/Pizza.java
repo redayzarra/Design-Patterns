@@ -105,3 +105,22 @@ class PepperoniPizza extends Pizza implements Grillable {
         System.out.println("Grilling pepperoni pizza...");
     }
 }
+
+// Create the payment method interface which will process payments
+interface PaymentMethod {
+    void processPayment();
+    String getType();
+}
+
+// Create a concrete credit card class which is a type of payment method
+class CreditCard implements PaymentMethod {
+    @Override
+    public void processPayment() {
+        System.out.println("Processing payment with Credit Card...");
+    }
+
+    @Override
+    public String getType() {
+        return "credit";
+    }
+}
