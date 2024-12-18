@@ -124,3 +124,29 @@ class CreditCard implements PaymentMethod {
         return "credit";
     }
 }
+
+// Create a concrete paypal class which is a type of payment method
+class PayPal implements PaymentMethod {
+    @Override
+    public void processPayment() {
+        System.out.println("Processing payment with PayPal...");
+    }
+
+    @Override
+    public String getType() {
+        return "paypal";
+    }
+}
+
+// Create a concrete cash class which is a type of payment method
+class Cash implements PaymentMethod {
+    @Override
+    public void processPayment() {
+        System.out.println("Processing cash payment...");
+    }
+
+    @Override
+    public String getType() {
+        return "cash";
+    }
+}
