@@ -69,3 +69,41 @@ class Pizza {
                 ", toppings=" + toppings + ")";
     }
 }
+
+// Create the PizzaBuilder concrete class
+public class PizzaBuilder {
+    private final Pizza pizza;
+
+    public PizzaBuilder() {
+        this.pizza = new Pizza();
+    }
+
+    public PizzaBuilder setSize(Size size) {
+        pizza.setSize(size);
+        return this;
+    }
+
+    public PizzaBuilder setCrust(Crust crust) {
+        pizza.setCrust(crust);
+        return this;
+    }
+
+    public PizzaBuilder setSauce(Sauce sauce) {
+        pizza.setSauce(sauce);
+        return this;
+    }
+
+    public PizzaBuilder addTopping(Topping topping) {
+        pizza.getToppings().add(topping);
+        return this;
+    }
+
+    public PizzaBuilder addToppings(List<Topping> toppings) {
+        pizza.getToppings().addAll(toppings);
+        return this;
+    }
+
+    public Pizza build() {
+        return pizza;
+    }
+}
