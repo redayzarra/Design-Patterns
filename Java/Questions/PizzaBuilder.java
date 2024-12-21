@@ -1,6 +1,7 @@
 // Creating enums for pizza attributes
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 enum Size {
@@ -113,5 +114,21 @@ public class PizzaBuilder {
     // Build method to return the final pizza
     public Pizza build() {
         return pizza;
+    }
+}
+
+// Test the pizza builder
+class Test {
+    public static void main(String[] args) {
+        PizzaBuilder pizzaBuilder = new PizzaBuilder();
+
+        Pizza myPizza = pizzaBuilder
+                .setSize(Size.LARGE)
+                .setCrust(Crust.THIN)
+                .setSauce(Sauce.TOMATO)
+                .addToppings(Arrays.asList(Topping.JALAPENO, Topping.OLIVES))
+                .build();
+
+        System.out.println(myPizza);
     }
 }
