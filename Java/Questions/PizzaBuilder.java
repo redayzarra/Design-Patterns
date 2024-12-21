@@ -72,37 +72,45 @@ class Pizza {
 
 // Create the PizzaBuilder concrete class
 public class PizzaBuilder {
+    // Creating private pizza variable
     private final Pizza pizza;
 
+    // Constructor to initialize PizzaBuilder
     public PizzaBuilder() {
         this.pizza = new Pizza();
     }
 
+    // Method with method-chaining to set size
     public PizzaBuilder setSize(Size size) {
         pizza.setSize(size);
         return this;
     }
 
+    // Method with method-chaining to set crust
     public PizzaBuilder setCrust(Crust crust) {
         pizza.setCrust(crust);
         return this;
     }
 
+    // Method with method-chaining to set sauce
     public PizzaBuilder setSauce(Sauce sauce) {
         pizza.setSauce(sauce);
         return this;
     }
 
+    // Method with method-chaining to add a topping
     public PizzaBuilder addTopping(Topping topping) {
         pizza.getToppings().add(topping);
         return this;
     }
 
+    // Method with method-chaining to add many toppings
     public PizzaBuilder addToppings(List<Topping> toppings) {
         pizza.getToppings().addAll(toppings);
         return this;
     }
 
+    // Build method to return the final pizza
     public Pizza build() {
         return pizza;
     }
