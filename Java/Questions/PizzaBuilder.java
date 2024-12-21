@@ -1,9 +1,9 @@
-// Creating enums for pizza attributes
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+// Creating enums for pizza attributes
 enum Size {
     SMALL, MEDIUM, LARGE
 }
@@ -20,16 +20,20 @@ enum Topping {
     JALAPENO, OLIVES, PINEAPPLE, MUSHROOMS
 }
 
+// Creating a concrete pizza class
 class Pizza {
+    // Variables to store the pizza attributes
     private Size size;
     private Crust crust;
     private Sauce sauce;
     private List<Topping> toppings;
 
+    // Constructor to initialize the pizza 
     public Pizza() {
         this.toppings = new ArrayList<>();
     }
 
+    // Getter and setter for the pizza's size
     public Size getSize() {
         return size;
     }
@@ -38,6 +42,7 @@ class Pizza {
         this.size = size;
     }
 
+    // Getter and setter for the pizza's crust
     public Crust getCrust() {
         return crust;
     }
@@ -46,6 +51,7 @@ class Pizza {
         this.crust = crust;
     }
 
+    // Getter and setter for the pizza's sauce
     public Sauce getSauce() {
         return sauce;
     }
@@ -54,6 +60,7 @@ class Pizza {
         this.sauce = sauce;
     }
 
+    // Getter and setter for the pizza's toppings
     public List<Topping> getToppings() {
         return toppings;
     }
@@ -62,6 +69,7 @@ class Pizza {
         this.toppings = toppings;
     }
 
+    // Method to pretty print the pizza
     @Override
     public String toString() {
         return "Pizza(size=" + size +
