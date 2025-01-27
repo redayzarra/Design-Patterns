@@ -1,71 +1,71 @@
-import java.util.HashMap;
-import java.util.Map;
-
-// Define an interface to specify other attractions
-interface Attraction {
-	Map<String, String> getRequirements();
+// Define an interface for the shape
+interface Shape {
+	void draw(); // This is the public method that every concrete class must implement
 }
 
-// Define a concrete class for roller coaster attraction
-class RollerCoaster implements Attraction {
-	@Override // Rewrite th functionality of the method from super class
-	public Map<String, String> getRequirements() {
-		Map<String, String> requirements = new HashMap<>();
-		requirements.put("height", "Must be at least 48 inches tall");
-        requirements.put("health", "No heart conditions or recent surgeries");
-        return requirements;
-	}
-}
-
-class HauntedHouse implements Attraction {
+// Create a concrete class that implements the Shape interface
+class Circle implements Shape {
 	@Override
-    public Map<String, String> getRequirements() {
-        Map<String, String> requirements = new HashMap<>();
-        requirements.put("age", "Must be at least 12 years old");
-        requirements.put("warning", "Not recommended for individuals with heart conditions");
-        return requirements;
-    }
-}
-
-class WaterSlide implements Attraction {
-    @Override
-    public Map<String, String> getRequirements() {
-        Map<String, String> requirements = new HashMap<>();
-        requirements.put("swimming", "Must be able to swim");
-        requirements.put("lockers", "Locker rental available for personal items");
-        return requirements;
-    }
-}
-
-// Create the Factory Pattern: Uses a string type to return the correct class
-public class Factory {
-	private static Attraction createAttraction(String type) {
-		switch (type.toLowerCase()) {
-			case "rollercoaster" -> {
-                    return new RollerCoaster();
-                }
-			case "hauntedhouse" -> {
-                    return new HauntedHouse();
-                }
-			case "waterslide" -> {
-                    return new WaterSlide();
-                }
-			default -> throw new IllegalArgumentException("Unknown type of attraction: " + type);
-		}
+	public void draw() {
+		System.out.println("Drawing a ciricle");
 	}
+}
 
-    public static void main(String[] args) {
-        // Create attractions using the factory
-        Attraction rollercoaster = Factory.createAttraction("rollercoaster");
-        Attraction hauntedhouse = Factory.createAttraction("hauntedhouse");
-        Attraction waterslide = Factory.createAttraction("waterslide");
-    
-        // Store the attractions in an array
-        Attraction[] attractions = {rollercoaster, hauntedhouse, waterslide};
-    
-        // Test each attraction
-        for (Attraction attraction : attractions) {
-            System.out.println(attraction.getRequirements());
+// Create a concrete class that implements the Shape interface
+class Triangle implements Shape {
+	@Override
+	public void draw() {
+		System.out.println("Drawing a triangle");
+	}
+}
+
+// Create a concrete class that implements the Shape interface
+class Rectangle implements Shape {
+	@Override
+	public void draw() {
+		System.out.println("Drawing a rectangle");
+	}
+}
+// Create a concrete class that implements the Shape interface
+class Square implements Shape {
+	@Override
+	public void draw() {
+		System.out.println("Drawing a square");
+	}
+}
+
+// Create the Factory design pattern 
+class ShapeFactory {
+	// Create a static method to return the right shape
+    public static Shape getShape(String shapeType) {
+        // Base case: If the shape type doesn't exist, return null
+        if (shapeType == null) {
+            return null;
         }
+
+        switch (shapeType.toLowerCase()) {
+            case "circle":
+                return new Circle();
+            case "square":
+                return new Square();
+            case "rectangle":
+                return new Rectangle();
+            default:
+                throw new IllegalArgumentException("Unknown shape type provided: " + shapeType);
+        }
+    }
+}
+
+public class Factory {
+    public static void main(String[] args) {
+        // Use the factory to create new shapes
+        Shape circle = ShapeFactory.getShape("circle");
+        Shape square = ShapeFactory.getShape("square");
+        Shape rectangle = ShapeFactory.getShape("rectangle");
+
+        // Draw the individual shapes
+        circle.draw();
+        square.draw();
+        rectangle.draw();
     }
 }
