@@ -1,132 +1,100 @@
-import java.util.ArrayList;
-import java.util.List;
+// Create a class to define the object we want to build
+class Computer {
+    private String cpu;
+    private String gpu;
+    private String ram;
+    private String storage;
 
-// Define enums for different meal components
-enum MainItem {
-    BURGER, SANDWICH, SALAD
-}
-
-enum SideItem {
-    FRIES, ONION_RINGS, SIDE_SALAD
-}
-
-enum Drink {
-    SODA, JUICE, WATER
-}
-
-enum Dessert {
-    ICE_CREAM, PIE, COOKIES
-}
-
-// Define the Meal class
-class Meal {
-    private MainItem mainItem;
-    private final List<SideItem> sides;
-    private Drink drink;
-    private Dessert dessert;
-
-    // Constructor to initialize a list of sides
-    public Meal() {
-        this.sides = new ArrayList<>();
+    // Getters (which retrieve the computer's details)
+    public String getCpu() {
+        return cpu;
     }
 
-    // Getters and Setters
-    public MainItem getMainItem() {
-        return mainItem;
+    public String getGpu() {
+        return gpu;
     }
 
-    public void setMainItem(MainItem mainItem) {
-        this.mainItem = mainItem;
+    public String getRam() {
+        return ram;
     }
 
-    public List<SideItem> getSides() {
-        return sides;
+    public String getStorage() {
+        return storage;
     }
 
-    public void addSide(SideItem side) {
-        this.sides.add(side);
+    // Setters (which set the values during construction)
+    public void setCpu(String cpu) {
+        this.cpu = cpu;
     }
 
-    public void addSides(List<SideItem> sides) {
-        this.sides.addAll(sides);
+    public void setGpu(String gpu) {
+        this.gpu = gpu;
     }
 
-    public Drink getDrink() {
-        return drink;
+    public void setRam(String ram) {
+        this.ram = ram;
     }
 
-    public void setDrink(Drink drink) {
-        this.drink = drink;
+    public void setStorage(String storage) {
+        this.storage = storage;
     }
 
-    public Dessert getDessert() {
-        return dessert;
-    }
-
-    public void setDessert(Dessert dessert) {
-        this.dessert = dessert;
+    @Override
+    public String toString() {
+        return "CPU: " + cpu + ", GPU: " + gpu + ", RAM: " + ram + ", Storage: " + storage;
     }
 }
 
-// Create the Builder pattern: Define a concrete class to build meals
-class MealBuilder {
-    // Create the meal that we will build and return
-    private final Meal meal;
+// Create an interface for the builder design pattern
+interface Builder {
+    void addCpu();
+    void addGpu();
+    void addRam();
+    void addStorage();
+    Computer build();
+}
 
-    // Constructor to initilize a Meal object
-    public MealBuilder() {
-        this.meal = new Meal();
+class ComputerBuilder implements Builder {
+    private Computer computer;
+
+    public ComputerBuilder() {
+        this.computer = new Computer();
     }
 
-    // Returning "this" to allow for method chaining
-    public MealBuilder setMainItem(MainItem mainItem) {
-        meal.setMainItem(mainItem);
-        return this;
+    @Override
+    public void addCpu() {
+        computer.setCpu("AMD Ryzen 9 5900X");
     }
 
-    public MealBuilder addSide(SideItem side) {
-        meal.addSide(side);
-        return this;
+    @Override
+    public void addGpu() {
+        computer.setGpu("Nvidia RTX 3080");
     }
 
-    public MealBuilder addSides(List<SideItem> sides) {
-        meal.addSides(sides);
-        return this;
+    @Override
+    public void addRam() {
+        computer.setRam("32GB");
     }
 
-    public MealBuilder setDrink(Drink drink) {
-        meal.setDrink(drink);
-        return this;
+    @Override
+    public void addStorage() {
+        computer.setStorage("1TB NVMe SSD");
     }
 
-    public MealBuilder setDessert(Dessert dessert) {
-        meal.setDessert(dessert);
-        return this;
-    }
-
-    // Return the final meal using the build() method
-    public Meal build() {
-        return meal;
+    @Override
+    public Computer build() {
+        return this.computer;
     }
 }
 
-// Test the design pattern
-public class Builder {
-    public static void main(String[] args) {
-        // Use the builder to create a custom meal
-        MealBuilder mealBuilder = new MealBuilder();
-        Meal customMeal = mealBuilder
-                .setMainItem(MainItem.SANDWICH)
-                .addSides(List.of(SideItem.ONION_RINGS, SideItem.SIDE_SALAD))
-                .setDrink(Drink.JUICE)
-                .setDessert(Dessert.COOKIES)
-                .build();
-
-        // Display the meal's details
-        System.out.println("Custom Meal:");
-        System.out.println("Main Item: " + customMeal.getMainItem());
-        System.out.println("Sides: " + customMeal.getSides());
-        System.out.println("Drink: " + customMeal.getDrink());
-        System.out.println("Dessert: " + (customMeal.getDessert() != null ? customMeal.getDessert() : "No Dessert"));
+// Define the Director class which controls the construction process
+class Director {
+    public Computer constructComputer(Builder builder) {
+        builder.addCpu();
+        builder.addGpu();
+        builder.addRam();
+        builder.addStorage();
+        return builder.build();
     }
 }
+
